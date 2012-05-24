@@ -1,0 +1,1727 @@
+{\rtf1\ansi\ansicpg932\cocoartf949\cocoasubrtf540
+{\fonttbl\f0\fnil\fcharset128 Osaka;\f1\fswiss\fcharset0 Helvetica;}
+{\colortbl;\red255\green255\blue255;\red255\green0\blue0;\red0\green0\blue255;\red76\green78\blue78;
+\red64\green128\blue0;}
+\deftab480
+\pard\pardeftab480\ql\qnatural\pardirnatural
+
+\f0\fs24 \cf2 property
+\f1 \cf0  
+\f0 \cf3 name
+\f1 \cf0  
+\f0 :
+\f1  
+\f0 "FrontAccess"
+\f1 \
+
+\f0 \cf2 property
+\f1 \cf0  
+\f0 \cf3 version
+\f1 \cf0  
+\f0 :
+\f1  
+\f0 "1.1.2"
+\f1 \
+\
+
+\f0 (*\cf4 !@title FrontAccess Reference\
+\
+Obtain infomation for the specified application process and its frontmost document. Also you can save and close the frontmost document.\
+\
+* Version : 1.1.2\
+* Author : Tetsuro KURITA ((<tkurita@mac.com>))\
+\cf0 *)
+\f1 \
+
+\f0 \cf2 property
+\f1 \cf0  
+\f0 \cf5 _window
+\f1 \cf0  
+\f0 :
+\f1  
+\f0 \cf3 missing value
+\f1 \cf0 \
+
+\f0 \cf2 property
+\f1 \cf0  
+\f0 \cf5 _app
+\f1 \cf0  
+\f0 :
+\f1  
+\f0 \cf3 missing value
+\f1 \cf0 \
+
+\f0 \cf2 property
+\f1 \cf0  
+\f0 \cf5 _app_name
+\f1 \cf0  
+\f0 :
+\f1  
+\f0 \cf3 missing value
+\f1 \cf0 \
+
+\f0 \cf2 property
+\f1 \cf0  
+\f0 \cf5 _app_info
+\f1 \cf0  
+\f0 :
+\f1  
+\f0 \cf3 missing value
+\f1 \cf0 \
+
+\f0 \cf2 property
+\f1 \cf0  
+\f0 \cf5 _keytype_emulation
+\f1 \cf0  
+\f0 :
+\f1  
+\f0 \cf3 false
+\f1 \cf0 \
+\
+
+\f0 (*\cf4 !@group Constructor Methods \cf0 *)
+\f1 \
+\
+
+\f0 (*\cf4 !@abstruct\
+Make an instance of FrontAccess for the frontmost application.\
+@result script object : A new FrontAccess instance.\
+\cf0 *)
+\f1 \
+
+\f0 \cf2 on
+\f1 \cf0  
+\f0 \cf3 make
+\f1 \cf0 \
+	
+\f0 \cf2 set
+\f1 \cf0  
+\f0 \cf5 appfile
+\f1 \cf0  
+\f0 \cf2 to
+\f1 \cf0  
+\f0 \cf3 path to
+\f1 \cf0  
+\f0 \cf3 frontmost application
+\f1 \cf0  
+\f0 \cf3 as
+\f1 \cf0  
+\f0 \cf3 alias
+\f1 \cf0 \
+	
+\f0 \cf2 return
+\f1 \cf0  
+\f0 \cf5 make_for_appfile\cf0 (\cf5 appfile\cf0 )
+\f1 \
+
+\f0 \cf2 end
+\f1 \cf0  
+\f0 \cf3 make
+\f1 \cf0 \
+\
+
+\f0 (*\cf4 !@abstruct\
+Make an instance of FrontAccess for the specifed application\
+@description\
+If the application is not launched, missing value is returned.\
+@param an_app (reference) : e.g., application "Finder"\
+@result script object : A new FrontAccess instance.\
+\cf0 *)
+\f1 \
+
+\f0 \cf2 on
+\f1 \cf0  
+\f0 \cf5 make_for_app\cf0 (\cf5 an_app\cf0 )
+\f1 \
+	
+\f0 \cf2 set
+\f1 \cf0  
+\f0 \cf5 app_path
+\f1 \cf0  
+\f0 \cf2 to
+\f1 \cf0  
+\f0 \cf3 path to
+\f1 \cf0  
+\f0 \cf5 an_app
+\f1 \cf0  
+\f0 \cf3 as
+\f1 \cf0  
+\f0 \cf3 alias
+\f1 \cf0 \
+	
+\f0 \cf2 return
+\f1 \cf0  
+\f0 \cf5 make_for_appfile\cf0 (\cf5 app_path\cf0 )
+\f1 \
+
+\f0 \cf2 end
+\f1 \cf0  
+\f0 \cf5 make_for_app
+\f1 \cf0 \
+\
+
+\f0 \cf2 on
+\f1 \cf0  
+\f0 \cf5 process_for_appinfo\cf0 (\cf5 an_info\cf0 )
+\f1 \
+	
+\f0 \cf2 considering
+\f1 \cf0  
+\f0 \cf3 numeric strings
+\f1 \cf0 \
+		
+\f0 \cf2 set
+\f1 \cf0  
+\f0 \cf5 is_leopard
+\f1 \cf0  
+\f0 \cf2 to
+\f1 \cf0  
+\f0 (\cf3 AppleScript\cf0 's
+\f1  
+\f0 \cf3 version
+\f1 \cf0  
+\f0 \cf2 as
+\f1 \cf0  
+\f0 \cf3 Unicode text\cf0 )
+\f1  
+\f0 \cf2 is
+\f1 \cf0  
+\f0 \cf2 greater than
+\f1 \cf0  
+\f0 \cf2 or
+\f1 \cf0  
+\f0 \cf2 equal to
+\f1 \cf0  
+\f0 "2"
+\f1 \
+	
+\f0 \cf2 end
+\f1 \cf0  
+\f0 \cf2 considering
+\f1 \cf0 \
+	\
+	
+\f0 \cf2 if
+\f1 \cf0  
+\f0 \cf5 is_leopard
+\f1 \cf0  
+\f0 \cf2 then
+\f1 \cf0  
+\f0 --\cf4  leopard
+\f1 \cf0 \
+		
+\f0 \cf2 set
+\f1 \cf0  
+\f0 \cf5 bundle_identifier
+\f1 \cf0  
+\f0 \cf2 to
+\f1 \cf0  
+\f0 \cf3 bundle identifier
+\f1 \cf0  
+\f0 \cf2 of
+\f1 \cf0  
+\f0 \cf5 an_info
+\f1 \cf0 \
+		
+\f0 \cf2 if
+\f1 \cf0  
+\f0 \cf5 bundle_identifier
+\f1 \cf0  
+\f0 \cf2 is
+\f1 \cf0  
+\f0 \cf2 not
+\f1 \cf0  
+\f0 \cf3 missing value
+\f1 \cf0  
+\f0 \cf2 then
+\f1 \cf0 \
+			
+\f0 \cf2 tell
+\f1 \cf0  
+\f0 \cf3 application
+\f1 \cf0  
+\f0 "System Events"
+\f1 \
+				
+\f0 \cf2 return
+\f1 \cf0  
+\f0 \cf3 item
+\f1 \cf0  
+\f0 1
+\f1  
+\f0 \cf2 of
+\f1 \cf0  
+\f0 (\cf2 every
+\f1 \cf0  
+\f0 \cf3 application process
+\f1 \cf0  
+\f0 \cf2 whose
+\f1 \cf0  
+\f0 \cf3 bundle identifier
+\f1 \cf0  
+\f0 \cf2 is
+\f1 \cf0  
+\f0 \cf5 bundle_identifier\cf0 )
+\f1 \
+			
+\f0 \cf2 end
+\f1 \cf0  
+\f0 \cf2 tell
+\f1 \cf0 \
+		
+\f0 \cf2 end
+\f1 \cf0  
+\f0 \cf2 if
+\f1 \cf0 \
+		\
+		
+\f0 \cf2 set
+\f1 \cf0  
+\f0 \cf5 short_name
+\f1 \cf0  
+\f0 \cf2 to
+\f1 \cf0  
+\f0 \cf3 short name
+\f1 \cf0  
+\f0 \cf2 of
+\f1 \cf0  
+\f0 \cf5 an_info
+\f1 \cf0 \
+		
+\f0 \cf2 tell
+\f1 \cf0  
+\f0 \cf3 application
+\f1 \cf0  
+\f0 "System Events"
+\f1 \
+			
+\f0 \cf2 set
+\f1 \cf0  
+\f0 \cf3 return
+\f1 \cf0  
+\f0 \cf2 to
+\f1 \cf0  
+\f0 \cf3 item
+\f1 \cf0  
+\f0 1
+\f1  
+\f0 \cf2 of
+\f1 \cf0  
+\f0 (\cf2 every
+\f1 \cf0  
+\f0 \cf3 application process
+\f1 \cf0  
+\f0 \cf2 whose
+\f1 \cf0  
+\f0 \cf3 short name
+\f1 \cf0  
+\f0 \cf2 is
+\f1 \cf0  
+\f0 \cf5 short_name\cf0 )
+\f1 \
+		
+\f0 \cf2 end
+\f1 \cf0  
+\f0 \cf2 tell
+\f1 \cf0 \
+	
+\f0 \cf2 else
+\f1 \cf0  
+\f0 --\cf4  tiger
+\f1 \cf0 \
+		
+\f0 \cf2 set
+\f1 \cf0  
+\f0 \cf5 a_name
+\f1 \cf0  
+\f0 \cf2 to
+\f1 \cf0  
+\f0 \cf3 displayed name
+\f1 \cf0  
+\f0 \cf2 of
+\f1 \cf0  
+\f0 \cf5 an_info
+\f1 \cf0 \
+		
+\f0 \cf2 tell
+\f1 \cf0  
+\f0 \cf3 application
+\f1 \cf0  
+\f0 "System Events"
+\f1 \
+			
+\f0 \cf2 return
+\f1 \cf0  
+\f0 \cf3 item
+\f1 \cf0  
+\f0 1
+\f1  
+\f0 \cf2 of
+\f1 \cf0  
+\f0 (\cf2 every
+\f1 \cf0  
+\f0 \cf3 application process
+\f1 \cf0  
+\f0 \cf2 whose
+\f1 \cf0  
+\f0 \cf3 displayed name
+\f1 \cf0  
+\f0 \cf2 is
+\f1 \cf0  
+\f0 \cf5 a_name\cf0 )
+\f1 \
+		
+\f0 \cf2 end
+\f1 \cf0  
+\f0 \cf2 tell
+\f1 \cf0 \
+	
+\f0 \cf2 end
+\f1 \cf0  
+\f0 \cf2 if
+\f1 \cf0 \
+
+\f0 \cf2 end
+\f1 \cf0  
+\f0 \cf5 process_for_appinfo
+\f1 \cf0 \
+\
+
+\f0 (*\cf4 !@abstruct\
+Make an instance of FrontAccess for the application specified by a file reference.\
+@description\
+If the application is not launched, missing value is returned.\
+@param appfile (alias) : an alias to the application.\
+@result script object : A new FrontAccess instance.\
+\cf0 *)
+\f1 \
+
+\f0 \cf2 on
+\f1 \cf0  
+\f0 \cf5 make_for_appfile\cf0 (\cf5 appfile\cf0 )
+\f1 \
+	
+\f0 \cf2 set
+\f1 \cf0  
+\f0 \cf5 an_info
+\f1 \cf0  
+\f0 \cf2 to
+\f1 \cf0  
+\f0 \cf3 info for
+\f1 \cf0  
+\f0 \cf5 appfile
+\f1 \cf0 \
+	
+\f0 \cf2 set
+\f1 \cf0  
+\f0 \cf5 appname
+\f1 \cf0  
+\f0 \cf2 to
+\f1 \cf0  
+\f0 \cf3 short name
+\f1 \cf0  
+\f0 \cf2 of
+\f1 \cf0  
+\f0 \cf5 an_info
+\f1 \cf0 \
+	
+\f0 \cf2 if
+\f1 \cf0  
+\f0 \cf5 appname
+\f1 \cf0  
+\f0 \cf2 is
+\f1 \cf0  
+\f0 \cf3 missing value
+\f1 \cf0  
+\f0 \cf2 then
+\f1 \cf0 \
+		
+\f0 \cf2 set
+\f1 \cf0  
+\f0 \cf5 appname
+\f1 \cf0  
+\f0 \cf2 to
+\f1 \cf0  
+\f0 \cf3 displayed name
+\f1 \cf0  
+\f0 \cf2 of
+\f1 \cf0  
+\f0 \cf5 an_info
+\f1 \cf0 \
+	
+\f0 \cf2 end
+\f1 \cf0  
+\f0 \cf2 if
+\f1 \cf0 \
+	
+\f0 \cf2 set
+\f1 \cf0  
+\f0 \cf5 app_process
+\f1 \cf0  
+\f0 \cf2 to
+\f1 \cf0  
+\f0 \cf5 process_for_appinfo\cf0 (\cf5 an_info\cf0 )
+\f1 \
+	
+\f0 \cf2 set
+\f1 \cf0  
+\f0 \cf5 a_parent
+\f1 \cf0  
+\f0 \cf2 to
+\f1 \cf0  
+\f0 \cf2 me
+\f1 \cf0 \
+	
+\f0 \cf2 try
+\f1 \cf0 \
+		
+\f0 \cf2 script
+\f1 \cf0  
+\f0 \cf5 FrontAccess
+\f1 \cf0 \
+			
+\f0 \cf2 property
+\f1 \cf0  
+\f0 \cf3 parent
+\f1 \cf0  
+\f0 :
+\f1  
+\f0 \cf5 a_parent
+\f1 \cf0 \
+			
+\f0 \cf2 property
+\f1 \cf0  
+\f0 \cf5 _window
+\f1 \cf0  
+\f0 :
+\f1  
+\f0 \cf3 missing value
+\f1 \cf0 \
+			
+\f0 \cf2 property
+\f1 \cf0  
+\f0 \cf5 _app
+\f1 \cf0  
+\f0 :
+\f1  
+\f0 \cf5 appfile
+\f1 \cf0 \
+			
+\f0 \cf2 property
+\f1 \cf0  
+\f0 \cf5 _app_name
+\f1 \cf0  
+\f0 :
+\f1  
+\f0 \cf5 appname
+\f1 \cf0 \
+			
+\f0 \cf2 property
+\f1 \cf0  
+\f0 \cf5 _app_info
+\f1 \cf0  
+\f0 :
+\f1  
+\f0 \cf5 an_info
+\f1 \cf0 \
+			
+\f0 \cf2 property
+\f1 \cf0  
+\f0 \cf5 _process
+\f1 \cf0  
+\f0 :
+\f1  
+\f0 \cf5 app_process
+\f1 \cf0 \
+			
+\f0 \cf2 property
+\f1 \cf0  
+\f0 \cf5 _keytype_emulation
+\f1 \cf0  
+\f0 :
+\f1  
+\f0 \cf2 my
+\f1 \cf0  
+\f0 \cf5 _keytype_emulation
+\f1 \cf0 \
+		
+\f0 \cf2 end
+\f1 \cf0  
+\f0 \cf2 script
+\f1 \cf0 \
+		
+\f0 \cf2 return
+\f1 \cf0  
+\f0 \cf5 FrontAccess
+\f1 \cf0 \
+	
+\f0 \cf2 on
+\f1 \cf0  
+\f0 \cf2 error
+\f1 \cf0 \
+		
+\f0 \cf2 return
+\f1 \cf0  
+\f0 \cf3 missing value
+\f1 \cf0 \
+	
+\f0 \cf2 end
+\f1 \cf0  
+\f0 \cf2 try
+\f1 \cf0 \
+
+\f0 \cf2 end
+\f1 \cf0  
+\f0 \cf5 make_for_appfile
+\f1 \cf0 \
+\
+
+\f0 (*\cf4 !@group Obtain application infomation \cf0 *)
+\f1 \
+\
+
+\f0 (*\cf4 !@abstruct\
+Obtain the application name.\
+@result Unicode text\
+\cf0 *)
+\f1 \
+
+\f0 \cf2 on
+\f1 \cf0  
+\f0 \cf5 application_name\cf0 ()
+\f1 \
+	
+\f0 \cf2 return
+\f1 \cf0  
+\f0 \cf2 my
+\f1 \cf0  
+\f0 \cf5 _app_name
+\f1 \cf0 \
+
+\f0 \cf2 end
+\f1 \cf0  
+\f0 \cf5 application_name
+\f1 \cf0 \
+\
+
+\f0 (*\cf4 !@abstruct\
+Obtain the application's bundle idetifier.\
+@result Unicode text\
+\cf0 *)
+\f1 \
+
+\f0 \cf2 on
+\f1 \cf0  
+\f0 \cf5 bundle_identifier\cf0 ()
+\f1 \
+	
+\f0 \cf2 return
+\f1 \cf0  
+\f0 \cf2 my
+\f1 \cf0  
+\f0 \cf5 _app_info\cf0 's
+\f1  
+\f0 \cf3 bundle identifier
+\f1 \cf0 \
+
+\f0 \cf2 end
+\f1 \cf0  
+\f0 \cf5 bundle_identifier
+\f1 \cf0 \
+\
+
+\f0 (*\cf4 !@abstruct\
+Obtain infomation for the application file.\
+@description\
+The infomation is obtained by &quot;info for&quot; command.\
+@result file infomation : the result of &quot;info for&quot; command.\
+\cf0 *)
+\f1 \
+
+\f0 \cf2 on
+\f1 \cf0  
+\f0 \cf5 application_info\cf0 ()
+\f1 \
+	
+\f0 \cf2 return
+\f1 \cf0  
+\f0 \cf2 my
+\f1 \cf0  
+\f0 \cf5 _app_info
+\f1 \cf0 \
+
+\f0 \cf2 end
+\f1 \cf0  
+\f0 \cf5 application_info
+\f1 \cf0 \
+\
+
+\f0 (*\cf4 !@abstruct\
+Obtain an alias to the application file.\
+@result alias\
+\cf0 *)
+\f1 \
+
+\f0 \cf2 on
+\f1 \cf0  
+\f0 \cf5 application_alias\cf0 ()
+\f1 \
+	
+\f0 \cf2 return
+\f1 \cf0  
+\f0 \cf2 my
+\f1 \cf0  
+\f0 \cf5 _app
+\f1 \cf0 \
+
+\f0 \cf2 end
+\f1 \cf0  
+\f0 \cf5 application_alias
+\f1 \cf0 \
+\
+
+\f0 (*\cf4 !@abstruct\
+Obtain a reference to the application process.\
+@result reference\
+A value of the application process class of application &quot;System Events&quot;.\
+\cf0 *)
+\f1 \
+
+\f0 \cf2 on
+\f1 \cf0  
+\f0 \cf5 application_process\cf0 ()
+\f1 \
+	
+\f0 \cf2 return
+\f1 \cf0  
+\f0 \cf2 my
+\f1 \cf0  
+\f0 \cf5 _process
+\f1 \cf0 \
+
+\f0 \cf2 end
+\f1 \cf0  
+\f0 \cf5 application_process
+\f1 \cf0 \
+\
+
+\f0 (*\cf4 !@abstruct\
+Whether a target instance indicates currrent application.\
+@result boolean\
+\cf0 *)
+\f1 \
+
+\f0 \cf2 on
+\f1 \cf0  
+\f0 \cf5 is_current_application\cf0 ()
+\f1 \
+	
+\f0 \cf2 set
+\f1 \cf0  
+\f0 \cf5 a_path
+\f1 \cf0  
+\f0 \cf2 to
+\f1 \cf0  
+\f0 \cf3 path to
+\f1 \cf0  
+\f0 \cf3 current application
+\f1 \cf0 \
+	
+\f0 \cf2 return
+\f1 \cf0  
+\f0 (\cf2 my
+\f1 \cf0  
+\f0 \cf5 _app
+\f1 \cf0  
+\f0 \cf2 as
+\f1 \cf0  
+\f0 \cf3 Unicode text\cf0 )
+\f1  
+\f0 \cf2 is
+\f1 \cf0  
+\f0 (\cf5 a_path
+\f1 \cf0  
+\f0 \cf2 as
+\f1 \cf0  
+\f0 \cf3 Unicode text\cf0 )
+\f1 \
+
+\f0 \cf2 end
+\f1 \cf0  
+\f0 \cf5 is_current_application
+\f1 \cf0 \
+\
+
+\f0 (*\cf4 !@group Obtain document infomation \cf0 *)
+\f1 \
+\
+
+\f0 (*\cf4 !@abstruct\
+Obtain a reference of the frontmost window of the application\
+@result reference\
+A value of the window class of application &quot;System Events&quot;.\
+\cf0 *)
+\f1 \
+
+\f0 \cf2 on
+\f1 \cf0  
+\f0 \cf5 document_window\cf0 ()
+\f1 \
+	
+\f0 \cf2 if
+\f1 \cf0  
+\f0 \cf2 my
+\f1 \cf0  
+\f0 \cf5 _window
+\f1 \cf0  
+\f0 \cf2 is
+\f1 \cf0  
+\f0 \cf3 missing value
+\f1 \cf0  
+\f0 \cf2 then
+\f1 \cf0 \
+		
+\f0 \cf5 resolve_window\cf0 ()
+\f1 \
+	
+\f0 \cf2 end
+\f1 \cf0  
+\f0 \cf2 if
+\f1 \cf0 \
+	
+\f0 \cf2 return
+\f1 \cf0  
+\f0 \cf2 my
+\f1 \cf0  
+\f0 \cf5 _window
+\f1 \cf0 \
+
+\f0 \cf2 end
+\f1 \cf0  
+\f0 \cf5 document_window
+\f1 \cf0 \
+\
+
+\f0 (*\cf4 !@abstruct\
+Obtain a file URL of the frontmost document of the application\
+@description\
+If it is failed to get the front document window, error number 1750 will raise.\
+\
+If it is failed to get a file reference of the front window, error number 1751 will raise.\
+@result text\
+\cf0 *)
+\f1 \
+
+\f0 \cf2 on
+\f1 \cf0  
+\f0 \cf5 document_url\cf0 ()
+\f1 \
+	
+\f0 \cf2 if
+\f1 \cf0  
+\f0 \cf2 my
+\f1 \cf0  
+\f0 \cf5 _app_name
+\f1 \cf0  
+\f0 \cf2 is
+\f1 \cf0  
+\f0 "Finder"
+\f1  
+\f0 \cf2 then
+\f1 \cf0 \
+		
+\f0 \cf2 return
+\f1 \cf0  
+\f0 \cf3 missing value
+\f1 \cf0 \
+	
+\f0 \cf2 end
+\f1 \cf0  
+\f0 \cf2 if
+\f1 \cf0 \
+	\
+	
+\f0 \cf2 set
+\f1 \cf0  
+\f0 \cf5 file_url
+\f1 \cf0  
+\f0 \cf2 to
+\f1 \cf0  
+\f0 \cf3 missing value
+\f1 \cf0 \
+	
+\f0 \cf2 set
+\f1 \cf0  
+\f0 \cf5 a_window
+\f1 \cf0  
+\f0 \cf2 to
+\f1 \cf0  
+\f0 \cf5 document_window\cf0 ()
+\f1 \
+	
+\f0 \cf2 if
+\f1 \cf0  
+\f0 \cf5 a_window
+\f1 \cf0  
+\f0 \cf2 is
+\f1 \cf0  
+\f0 \cf2 not
+\f1 \cf0  
+\f0 \cf3 missing value
+\f1 \cf0  
+\f0 \cf2 then
+\f1 \cf0 \
+		
+\f0 \cf2 tell
+\f1 \cf0  
+\f0 \cf3 application
+\f1 \cf0  
+\f0 "System Events"
+\f1 \
+			
+\f0 \cf2 set
+\f1 \cf0  
+\f0 \cf5 file_url
+\f1 \cf0  
+\f0 \cf2 to
+\f1 \cf0  
+\f0 (\cf3 value
+\f1 \cf0  
+\f0 \cf2 of
+\f1 \cf0  
+\f0 \cf3 attribute
+\f1 \cf0  
+\f0 "AXDocument"
+\f1  
+\f0 \cf2 of
+\f1 \cf0  
+\f0 \cf5 a_window\cf0 )
+\f1 \
+		
+\f0 \cf2 end
+\f1 \cf0  
+\f0 \cf2 tell
+\f1 \cf0 \
+	
+\f0 \cf2 end
+\f1 \cf0  
+\f0 \cf2 if
+\f1 \cf0 \
+	\
+	
+\f0 \cf2 if
+\f1 \cf0  
+\f0 \cf5 file_url
+\f1 \cf0  
+\f0 \cf2 is
+\f1 \cf0  
+\f0 \cf3 missing value
+\f1 \cf0  
+\f0 \cf2 then
+\f1 \cf0 \
+		
+\f0 --\cf4 error "Can't find a front document for the process " & quote & my _app_name & quote number 1750
+\f1 \cf0 \
+		
+\f0 \cf2 return
+\f1 \cf0  
+\f0 \cf3 missing value
+\f1 \cf0 \
+	
+\f0 \cf2 end
+\f1 \cf0  
+\f0 \cf2 if
+\f1 \cf0 \
+	\
+	
+\f0 \cf2 return
+\f1 \cf0  
+\f0 \cf5 file_url
+\f1 \cf0 \
+
+\f0 \cf2 end
+\f1 \cf0  
+\f0 \cf5 document_url
+\f1 \cf0 \
+\
+
+\f0 \cf2 on
+\f1 \cf0  
+\f0 \cf5 path_from_url\cf0 (\cf5 a_url\cf0 )
+\f1 \
+	
+\f0 \cf2 return
+\f1 \cf0  
+\f0 \cf3 URI Unescape
+\f1 \cf0  
+\f0 \cf5 a_url
+\f1 \cf0 \
+
+\f0 \cf2 end
+\f1 \cf0  
+\f0 \cf5 path_from_url
+\f1 \cf0 \
+\
+
+\f0 (*\cf4 !@abstruct\
+Obtain an alias to the file of the frontmost document of the application \
+@description\
+If it is failed to get the front document window, error number 1750 will raise.\
+\
+If it is failed to get a file reference of the front window, error number 1751 will raise.\
+@result alias\
+\cf0 *)
+\f1 \
+
+\f0 \cf2 on
+\f1 \cf0  
+\f0 \cf5 document_alias\cf0 ()
+\f1 \
+	
+\f0 \cf2 set
+\f1 \cf0  
+\f0 \cf5 file_url
+\f1 \cf0  
+\f0 \cf2 to
+\f1 \cf0  
+\f0 \cf5 document_url\cf0 ()
+\f1 \
+	
+\f0 \cf2 if
+\f1 \cf0  
+\f0 \cf5 file_url
+\f1 \cf0  
+\f0 \cf2 is
+\f1 \cf0  
+\f0 \cf3 missing value
+\f1 \cf0  
+\f0 \cf2 then
+\f1 \cf0  
+\f0 \cf2 return
+\f1 \cf0  
+\f0 \cf3 missing value
+\f1 \cf0 \
+	
+\f0 \cf2 set
+\f1 \cf0  
+\f0 \cf5 file_path
+\f1 \cf0  
+\f0 \cf2 to
+\f1 \cf0  
+\f0 \cf5 path_from_url\cf0 (\cf5 file_url\cf0 )
+\f1 \
+	
+\f0 \cf2 return
+\f1 \cf0  
+\f0 (\cf3 POSIX file
+\f1 \cf0  
+\f0 \cf5 file_path\cf0 )
+\f1  
+\f0 \cf2 as
+\f1 \cf0  
+\f0 \cf3 alias
+\f1 \cf0 \
+
+\f0 \cf2 end
+\f1 \cf0  
+\f0 \cf5 document_alias
+\f1 \cf0 \
+\
+
+\f0 \cf2 on
+\f1 \cf0  
+\f0 \cf5 resolve_window\cf0 ()
+\f1  
+\f0 --\cf4  private
+\f1 \cf0 \
+	
+\f0 \cf2 tell
+\f1 \cf0  
+\f0 \cf3 application
+\f1 \cf0  
+\f0 "System Events"
+\f1 \
+		
+\f0 \cf2 tell
+\f1 \cf0  
+\f0 \cf2 my
+\f1 \cf0  
+\f0 \cf5 _process
+\f1 \cf0 \
+			
+\f0 \cf2 set
+\f1 \cf0  
+\f0 \cf5 a_list
+\f1 \cf0  
+\f0 \cf2 to
+\f1 \cf0  
+\f0 \cf3 windows
+\f1 \cf0  
+\f0 \cf2 where
+\f1 \cf0  
+\f0 \cf3 value
+\f1 \cf0  
+\f0 \cf2 of
+\f1 \cf0  
+\f0 \cf3 attribute
+\f1 \cf0  
+\f0 "AXMain"
+\f1  
+\f0 \cf2 is
+\f1 \cf0  
+\f0 \cf3 true
+\f1 \cf0 \
+			
+\f0 \cf2 if
+\f1 \cf0  
+\f0 \cf3 length
+\f1 \cf0  
+\f0 \cf2 of
+\f1 \cf0  
+\f0 \cf5 a_list
+\f1 \cf0  
+\f0 \cf2 is
+\f1 \cf0  
+\f0 0
+\f1  
+\f0 \cf2 then
+\f1 \cf0 \
+				
+\f0 \cf2 error
+\f1 \cf0  
+\f0 "Can't find the front document window for the process "
+\f1  
+\f0 &
+\f1  
+\f0 \cf3 quote
+\f1 \cf0  
+\f0 &
+\f1  
+\f0 \cf2 my
+\f1 \cf0  
+\f0 \cf5 _app_name
+\f1 \cf0  
+\f0 &
+\f1  
+\f0 \cf3 quote
+\f1 \cf0  
+\f0 \cf3 number
+\f1 \cf0  
+\f0 1750
+\f1 \
+				
+\f0 \cf2 return
+\f1 \cf0  
+\f0 \cf3 false
+\f1 \cf0 \
+			
+\f0 \cf2 end
+\f1 \cf0  
+\f0 \cf2 if
+\f1 \cf0 \
+			
+\f0 \cf2 set
+\f1 \cf0  
+\f0 \cf5 a_window
+\f1 \cf0  
+\f0 \cf2 to
+\f1 \cf0  
+\f0 \cf3 item
+\f1 \cf0  
+\f0 1
+\f1  
+\f0 \cf2 of
+\f1 \cf0  
+\f0 \cf5 a_list
+\f1 \cf0 \
+			
+\f0 \cf2 set
+\f1 \cf0  
+\f0 \cf5 a_result
+\f1 \cf0  
+\f0 \cf2 to
+\f1 \cf0  
+\f0 \cf3 false
+\f1 \cf0 \
+			
+\f0 \cf2 try
+\f1 \cf0 \
+				
+\f0 \cf2 if
+\f1 \cf0  
+\f0 \cf3 value
+\f1 \cf0  
+\f0 \cf2 of
+\f1 \cf0  
+\f0 \cf3 attribute
+\f1 \cf0  
+\f0 "AXDocument"
+\f1  
+\f0 \cf2 of
+\f1 \cf0  
+\f0 \cf5 a_window
+\f1 \cf0  
+\f0 \cf3 exists
+\f1 \cf0  
+\f0 \cf2 then
+\f1 \cf0 \
+					
+\f0 \cf2 set
+\f1 \cf0  
+\f0 \cf2 my
+\f1 \cf0  
+\f0 \cf5 _window
+\f1 \cf0  
+\f0 \cf2 to
+\f1 \cf0  
+\f0 \cf5 a_window
+\f1 \cf0 \
+					
+\f0 \cf2 set
+\f1 \cf0  
+\f0 \cf5 a_result
+\f1 \cf0  
+\f0 \cf2 to
+\f1 \cf0  
+\f0 \cf3 true
+\f1 \cf0 \
+				
+\f0 \cf2 end
+\f1 \cf0  
+\f0 \cf2 if
+\f1 \cf0 \
+			
+\f0 \cf2 on
+\f1 \cf0  
+\f0 \cf2 error
+\f1 \cf0 \
+				
+\f0 \cf2 set
+\f1 \cf0  
+\f0 \cf5 a_result
+\f1 \cf0  
+\f0 \cf2 to
+\f1 \cf0  
+\f0 \cf3 false
+\f1 \cf0 \
+			
+\f0 \cf2 end
+\f1 \cf0  
+\f0 \cf2 try
+\f1 \cf0 \
+			\
+			
+\f0 \cf2 if
+\f1 \cf0  
+\f0 \cf2 not
+\f1 \cf0  
+\f0 \cf5 a_result
+\f1 \cf0  
+\f0 \cf2 then
+\f1 \cf0 \
+				
+\f0 \cf2 error
+\f1 \cf0  
+\f0 "Can't get a file reference for the front window of the process "
+\f1  
+\f0 &
+\f1  
+\f0 \cf3 quote
+\f1 \cf0  
+\f0 &
+\f1  
+\f0 \cf2 my
+\f1 \cf0  
+\f0 \cf5 _app_name
+\f1 \cf0  
+\f0 &
+\f1  
+\f0 \cf3 quote
+\f1 \cf0  
+\f0 \cf3 number
+\f1 \cf0  
+\f0 1751
+\f1 \
+			
+\f0 \cf2 end
+\f1 \cf0  
+\f0 \cf2 if
+\f1 \cf0 \
+			
+\f0 \cf2 return
+\f1 \cf0  
+\f0 \cf5 a_result
+\f1 \cf0 \
+		
+\f0 \cf2 end
+\f1 \cf0  
+\f0 \cf2 tell
+\f1 \cf0 \
+	
+\f0 \cf2 end
+\f1 \cf0  
+\f0 \cf2 tell
+\f1 \cf0 \
+
+\f0 \cf2 end
+\f1 \cf0  
+\f0 \cf5 resolve_window
+\f1 \cf0 \
+\
+
+\f0 (*\cf4 !@group Saving and Closing the Document \cf0 *)
+\f1 \
+\
+
+\f0 \cf2 on
+\f1 \cf0  
+\f0 \cf5 presskey_for_document\cf0 (\cf5 a_key\cf0 )
+\f1 \
+	
+\f0 \cf2 using terms from
+\f1 \cf0  
+\f0 \cf3 application
+\f1 \cf0  
+\f0 "System Events"
+\f1 \
+		
+\f0 \cf2 if
+\f1 \cf0  
+\f0 \cf2 not
+\f1 \cf0  
+\f0 (\cf3 frontmost
+\f1 \cf0  
+\f0 \cf2 of
+\f1 \cf0  
+\f0 \cf2 my
+\f1 \cf0  
+\f0 \cf5 _process\cf0 )
+\f1  
+\f0 \cf2 then
+\f1 \cf0 \
+			
+\f0 \cf2 try
+\f1 \cf0 \
+				
+\f0 \cf3 activate process
+\f1 \cf0  
+\f0 \cf3 identifier
+\f1 \cf0  
+\f0 \cf5 bundle_identifier\cf0 ()
+\f1 \
+			
+\f0 \cf2 on
+\f1 \cf0  
+\f0 \cf2 error
+\f1 \cf0 \
+				
+\f0 \cf2 set
+\f1 \cf0  
+\f0 \cf3 frontmost
+\f1 \cf0  
+\f0 \cf2 of
+\f1 \cf0  
+\f0 \cf2 my
+\f1 \cf0  
+\f0 \cf5 _process
+\f1 \cf0  
+\f0 \cf2 to
+\f1 \cf0  
+\f0 \cf3 true
+\f1 \cf0 \
+			
+\f0 \cf2 end
+\f1 \cf0  
+\f0 \cf2 try
+\f1 \cf0 \
+		
+\f0 \cf2 end
+\f1 \cf0  
+\f0 \cf2 if
+\f1 \cf0 \
+	
+\f0 \cf2 end
+\f1 \cf0  
+\f0 \cf2 using terms from
+\f1 \cf0 \
+	
+\f0 \cf2 tell
+\f1 \cf0  
+\f0 \cf3 application
+\f1 \cf0  
+\f0 "System Events"
+\f1 \
+		
+\f0 \cf3 keystroke
+\f1 \cf0  
+\f0 \cf5 a_key
+\f1 \cf0  
+\f0 \cf3 using
+\f1 \cf0  
+\f0 \cf3 command down
+\f1 \cf0 \
+	
+\f0 \cf2 end
+\f1 \cf0  
+\f0 \cf2 tell
+\f1 \cf0 \
+
+\f0 \cf2 end
+\f1 \cf0  
+\f0 \cf5 presskey_for_document
+\f1 \cf0 \
+\
+
+\f0 (*\cf4 !@abstruct\
+Perfrom saving the frontmost document of the application. \
+@description\
+The key type  &quot;Command+S&quot; is emulated.\
+\cf0 *)
+\f1 \
+
+\f0 \cf2 on
+\f1 \cf0  
+\f0 \cf5 save_document\cf0 ()
+\f1 \
+	
+\f0 \cf5 presskey_for_document\cf0 ("s")
+\f1 \
+
+\f0 \cf2 end
+\f1 \cf0  
+\f0 \cf5 save_document
+\f1 \cf0 \
+\
+
+\f0 (*\cf4 !@abstruct\
+Perfrom closing the frontmost document of the application. \
+@description\
+This method emulate pressing closing button if possible. When it is failed obtaining closing button,  key type  &quot;Command+W&quot; is emulated.\
+\
+Some application does not reflect emulation of pressing closing button. For such application,   &quot;Command+W&quot; emulation can be forced by passing ture to ((<set_keytype_emulation>)).\
+\cf0 *)
+\f1 \
+
+\f0 \cf2 on
+\f1 \cf0  
+\f0 \cf5 close_document\cf0 ()
+\f1 \
+	
+\f0 \cf2 if
+\f1 \cf0  
+\f0 \cf2 my
+\f1 \cf0  
+\f0 \cf5 _keytype_emulation
+\f1 \cf0  
+\f0 \cf2 then
+\f1 \cf0 \
+		
+\f0 \cf5 presskey_for_document\cf0 ("w")
+\f1 \
+	
+\f0 \cf2 else
+\f1 \cf0 \
+		
+\f0 --\cf4  incompatible applications
+\f1 \cf0 \
+		
+\f0 --\cf4   GraphicConverter
+\f1 \cf0 \
+		
+\f0 \cf5 document_window\cf0 ()
+\f1  
+\f0 --\cf4  resolving window
+\f1 \cf0 \
+		
+\f0 \cf2 set
+\f1 \cf0  
+\f0 \cf5 a_close_button
+\f1 \cf0  
+\f0 \cf2 to
+\f1 \cf0  
+\f0 \cf3 missing value
+\f1 \cf0 \
+		
+\f0 \cf2 using terms from
+\f1 \cf0  
+\f0 \cf3 application
+\f1 \cf0  
+\f0 "System Events"
+\f1 \
+			
+\f0 \cf2 tell
+\f1 \cf0  
+\f0 \cf2 my
+\f1 \cf0  
+\f0 \cf5 _window
+\f1 \cf0 \
+				
+\f0 --\cf4 set button_list to buttons whose description is "close button"
+\f1 \cf0 \
+				
+\f0 --\cf4 set button_list to buttons whose subrole is "AXCloseButton"
+\f1 \cf0 \
+				
+\f0 \cf2 try
+\f1 \cf0 \
+					
+\f0 \cf2 set
+\f1 \cf0  
+\f0 \cf5 a_close_button
+\f1 \cf0  
+\f0 \cf2 to
+\f1 \cf0  
+\f0 \cf3 value
+\f1 \cf0  
+\f0 \cf2 of
+\f1 \cf0  
+\f0 \cf3 attribute
+\f1 \cf0  
+\f0 "AXCloseButton"
+\f1 \
+				
+\f0 \cf2 end
+\f1 \cf0  
+\f0 \cf2 try
+\f1 \cf0 \
+			
+\f0 \cf2 end
+\f1 \cf0  
+\f0 \cf2 tell
+\f1 \cf0 \
+			\
+		
+\f0 \cf2 end
+\f1 \cf0  
+\f0 \cf2 using terms from
+\f1 \cf0 \
+		
+\f0 \cf2 if
+\f1 \cf0  
+\f0 \cf5 a_close_button
+\f1 \cf0  
+\f0 \cf2 is
+\f1 \cf0  
+\f0 \cf2 not
+\f1 \cf0  
+\f0 \cf3 missing value
+\f1 \cf0  
+\f0 \cf2 then
+\f1 \cf0 \
+			
+\f0 \cf2 using terms from
+\f1 \cf0  
+\f0 \cf3 application
+\f1 \cf0  
+\f0 "System Events"
+\f1 \
+				
+\f0 \cf3 perform
+\f1 \cf0  
+\f0 \cf3 action
+\f1 \cf0  
+\f0 "AXPress"
+\f1  
+\f0 \cf2 of
+\f1 \cf0  
+\f0 \cf5 a_close_button
+\f1 \cf0 \
+			
+\f0 \cf2 end
+\f1 \cf0  
+\f0 \cf2 using terms from
+\f1 \cf0 \
+		
+\f0 \cf2 else
+\f1 \cf0 \
+			
+\f0 \cf5 presskey_for_document\cf0 ("w")
+\f1 \
+		
+\f0 \cf2 end
+\f1 \cf0  
+\f0 \cf2 if
+\f1 \cf0 \
+	
+\f0 \cf2 end
+\f1 \cf0  
+\f0 \cf2 if
+\f1 \cf0 \
+
+\f0 \cf2 end
+\f1 \cf0  
+\f0 \cf5 close_document
+\f1 \cf0 \
+\
+
+\f0 (*\cf4 !@abstruct\
+When true is passed, key-type emulation (&quot;Command + w&quot;) is used for ((<close_document>)).\
+@param bool(boolean)\
+@result me\
+\cf0 *)
+\f1 \
+
+\f0 \cf2 on
+\f1 \cf0  
+\f0 \cf5 set_keytype_emulation\cf0 (\cf5 bool\cf0 )
+\f1 \
+	
+\f0 \cf2 set
+\f1 \cf0  
+\f0 \cf2 my
+\f1 \cf0  
+\f0 \cf5 _keytype_emulation
+\f1 \cf0  
+\f0 \cf2 to
+\f1 \cf0  
+\f0 \cf5 bool
+\f1 \cf0 \
+	
+\f0 \cf2 return
+\f1 \cf0  
+\f0 \cf2 me
+\f1 \cf0 \
+
+\f0 \cf2 end
+\f1 \cf0  
+\f0 \cf5 set_keytype_emulation
+\f1 \cf0 \
+\
+
+\f0 (*\cf4 !@abstruct\
+Put a text into the clipboard and emulate typing Command+v.\
+@param a_text(text)\
+@result none\
+\cf0 *)
+\f1 \
+
+\f0 \cf2 on
+\f1 \cf0  
+\f0 \cf5 paste_text\cf0 (\cf5 a_text\cf0 )
+\f1 \
+	
+\f0 \cf2 tell
+\f1 \cf0  
+\f0 \cf3 application
+\f1 \cf0  
+\f0 (\cf2 my
+\f1 \cf0  
+\f0 \cf5 _app_name\cf0 )
+\f1 \
+		
+\f0 \cf3 set the clipboard to
+\f1 \cf0  
+\f0 \cf5 a_text
+\f1 \cf0 \
+	
+\f0 \cf2 end
+\f1 \cf0  
+\f0 \cf2 tell
+\f1 \cf0 \
+	
+\f0 \cf5 presskey_for_document\cf0 ("v")
+\f1 \
+
+\f0 \cf2 end
+\f1 \cf0  
+\f0 \cf5 paste_text
+\f1 \cf0 \
+\
+
+\f0 \cf2 on
+\f1 \cf0  
+\f0 \cf3 activate
+\f1 \cf0 \
+	
+\f0 \cf3 activate process
+\f1 \cf0  
+\f0 \cf3 identifier
+\f1 \cf0  
+\f0 (\cf3 bundle identifier
+\f1 \cf0  
+\f0 \cf2 of
+\f1 \cf0  
+\f0 \cf2 my
+\f1 \cf0  
+\f0 \cf5 _app_info\cf0 )
+\f1 \
+
+\f0 \cf2 end
+\f1 \cf0  
+\f0 \cf3 activate
+\f1 \cf0 \
+\
+
+\f0 \cf2 on
+\f1 \cf0  
+\f0 \cf5 debug\cf0 ()
+\f1 \
+	
+\f0 --\cf4 set front_doc to make_for_app(application (get "CotEditor"))
+\f1 \cf0 \
+	
+\f0 \cf3 activate
+\f1 \cf0  
+\f0 \cf3 application
+\f1 \cf0  
+\f0 "CotEditor"
+\f1 \
+	
+\f0 \cf2 set
+\f1 \cf0  
+\f0 \cf5 front_doc
+\f1 \cf0  
+\f0 \cf2 to
+\f1 \cf0  
+\f0 \cf3 make
+\f1 \cf0 \
+	
+\f0 --\cf4 log front_doc's is_current_application()
+\f1 \cf0 \
+	
+\f0 --\cf4 log front_doc's document_alias()
+\f1 \cf0 \
+	
+\f0 \cf5 front_doc\cf0 's
+\f1  
+\f0 \cf5 set_keytype_emulation\cf0 (\cf3 true\cf0 )
+\f1 \
+	
+\f0 \cf5 front_doc\cf0 's
+\f1  
+\f0 \cf5 document_alias\cf0 ()
+\f1 \
+	
+\f0 --\cf4 log front_doc's close_document()
+\f1 \cf0 \
+
+\f0 \cf2 end
+\f1 \cf0  
+\f0 \cf5 debug
+\f1 \cf0 \
+\
+
+\f0 \cf2 on
+\f1 \cf0  
+\f0 \cf3 run
+\f1 \cf0 \
+	
+\f0 --\cf4 return debug()
+\f1 \cf0 \
+	
+\f0 \cf3 show helpbook
+\f1 \cf0  
+\f0 (\cf3 path to
+\f1 \cf0  
+\f0 \cf2 me\cf0 )
+\f1  
+\f0 \cf2 without
+\f1 \cf0  
+\f0 \cf3 recovering InfoPlist
+\f1 \cf0 \
+
+\f0 \cf2 end
+\f1 \cf0  
+\f0 \cf3 run
+\f1 \cf0 \
+}
