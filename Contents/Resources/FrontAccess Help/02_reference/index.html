@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+	<head>
+		<title>FrontAccess Reference</title>
+		
+		<meta http-equiv="content-type" content="text/html;charset=utf-8" />
+		<link href="assets/default.css" type="text/css" rel="stylesheet" media="all" />
+		<meta name="keywords" content="FrontAccess, AppleScript" />
+		<script type="text/javascript" src="assets/run_helpscript.js"></script>
+		<script type="text/javascript" src="assets/navibar-jump.js"></script>
+		<link href="../" id="HelpBookRoot" />
+	</head>
+
+	<body>
+		<div id="navi-bar">
+			<div class="edit-script-link">
+				<a onclick="return runHelpScriptWithBundleRoot(this)" href="assets/editScript.scpt">Edit Script</a>
+			</div>
+			<div class="left-contents">
+			<div class="to-root">
+				<!-- InstanceBeginEditable name="to-root" --><a href="../index.html">FrontAccess Help</a><!-- InstanceEndEditable -->
+			</div>
+			<select onchange="navibarJump(this)">
+<option value="">
+§
+</option>
+<option value="#Constructor_Methods">
+Constructor Methods
+</option>
+<option value="#make">
+- make
+</option>
+<option value="#make_for_app">
+- make_for_app
+</option>
+<option value="#make_for_appfile">
+- make_for_appfile
+</option>
+<option value="#Obtain_application_information">
+Obtain application information
+</option>
+<option value="#application_name">
+- application_name
+</option>
+<option value="#bundle_identifier">
+- bundle_identifier
+</option>
+<option value="#application_info">
+- application_info
+</option>
+<option value="#application_alias">
+- application_alias
+</option>
+<option value="#application_process">
+- application_process
+</option>
+<option value="#is_current_application">
+- is_current_application
+</option>
+<option value="#Obtain_document_information">
+Obtain document information
+</option>
+<option value="#document_window">
+- document_window
+</option>
+<option value="#main_window">
+- main_window
+</option>
+<option value="#document_url">
+- document_url
+</option>
+<option value="#document_alias">
+- document_alias
+</option>
+<option value="#Saving_and_Closing_the_Document">
+Saving and Closing the Document
+</option>
+<option value="#save_document">
+- save_document
+</option>
+<option value="#close_document">
+- close_document
+</option>
+<option value="#set_keytype_emulation">
+- set_keytype_emulation
+</option>
+<option value="#paste_text">
+- paste_text
+</option>
+<option value="#Checking_Installation_of_Scripting_Additions">
+Checking Installation of Scripting Additions
+</option>
+<option value="#check_osax">
+- check_osax
+</option>
+</select>
+			</div>
+		</div>
+		<!-- InstanceBeginEditable name="prev-next-item" --><div class="prev-next-item"><a href="../01_synopsis/index.html"><span class="navibar-prev">Synopsis</span></a>|<a href="../03_history/index.html"><span class="navibar-next">History</span></a></div><!-- InstanceEndEditable -->
+		<div id="contents">
+		<h1>FrontAccess Reference</h1>
+<p>Obtain information for the specified application process and its frontmost document. Also you can save and close the frontmost document.</p>
+<ul>
+<li>Version : 1.3</li>
+<li>Author : Tetsuro KURITA <a href="mailto:tkurita@mac.com">tkurita@mac.com</a></li>
+</ul>
+<h2 id="Constructor_Methods">Constructor Methods</h2>
+<h3 id="make"><a href="pages/make.html">make</a></h3>
+<p>Make an instance of FrontAccess for the frontmost application.</p>
+<h3 id="make_for_app"><a href="pages/make_for_app.html">make_for_app</a></h3>
+<p>Make an instance of FrontAccess for the specified application</p>
+<h3 id="make_for_appfile"><a href="pages/make_for_appfile.html">make_for_appfile</a></h3>
+<p>Make an instance of FrontAccess for the application specified by a file reference.</p>
+<h2 id="Obtain_application_information">Obtain application information</h2>
+<h3 id="application_name"><a href="pages/application_name.html">application_name</a></h3>
+<p>Obtain the application name.</p>
+<h3 id="bundle_identifier"><a href="pages/bundle_identifier.html">bundle_identifier</a></h3>
+<p>Obtain the application's bundle identifier.</p>
+<h3 id="application_info"><a href="pages/application_info.html">application_info</a></h3>
+<p>Obtain information for the application file.</p>
+<h3 id="application_alias"><a href="pages/application_alias.html">application_alias</a></h3>
+<p>Obtain an alias to the application file.</p>
+<h3 id="application_process"><a href="pages/application_process.html">application_process</a></h3>
+<p>Obtain a reference to the application process.</p>
+<h3 id="is_current_application"><a href="pages/is_current_application.html">is_current_application</a></h3>
+<p>Whether a target instance indicates current application.</p>
+<h2 id="Obtain_document_information">Obtain document information</h2>
+<h3 id="document_window"><a href="pages/document_window.html">document_window</a></h3>
+<p>Obtain a reference of the frontmost window of the application. The window is related with a file.</p>
+<h3 id="main_window"><a href="pages/main_window.html">main_window</a></h3>
+<p>Obtain a reference of the frontmost window of the application. The window is not always related with a file.</p>
+<h3 id="document_url"><a href="pages/document_url.html">document_url</a></h3>
+<p>Obtain a file URL of the frontmost document of the application</p>
+<h3 id="document_alias"><a href="pages/document_alias.html">document_alias</a></h3>
+<p>Obtain an alias to the file of the frontmost document of the application </p>
+<h2 id="Saving_and_Closing_the_Document">Saving and Closing the Document</h2>
+<h3 id="save_document"><a href="pages/save_document.html">save_document</a></h3>
+<p>Perform saving the frontmost document of the application. </p>
+<h3 id="close_document"><a href="pages/close_document.html">close_document</a></h3>
+<p>Perform closing the frontmost document of the application. </p>
+<h3 id="set_keytype_emulation"><a href="pages/set_keytype_emulation.html">set_keytype_emulation</a></h3>
+<p>When true is passed, key-type emulation (&quot;Command + w&quot;) is used for <a href="pages/close_document.html">close_document</a>.</p>
+<h3 id="paste_text"><a href="pages/paste_text.html">paste_text</a></h3>
+<p>Put a text into the clipboard and emulate typing Command+v.</p>
+<h2 id="Checking_Installation_of_Scripting_Additions">Checking Installation of Scripting Additions</h2>
+<h3 id="check_osax"><a href="pages/check_osax.html">check_osax</a></h3>
+<p>Check the installation and the versions of SmartActivate.osax and 'URI Escape.osax'.</p>
+		</div>
+		<!-- InstanceBeginEditable name="prev-next-item" --><div class="prev-next-item"><a href="../01_synopsis/index.html"><span class="navibar-prev">Synopsis</span></a>|<a href="../03_history/index.html"><span class="navibar-next">History</span></a></div><!-- InstanceEndEditable -->
+	</body>
+
+</html>
