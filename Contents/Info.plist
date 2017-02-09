@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
 	<key>CFBundleHelpBookFolder</key>
-	<string>FrontAccess Help</string>
+	<string>FrontAccessHelp</string>
 	<key>CFBundleHelpBookName</key>
 	<string>net.script-factory.FrontAccess.help</string>
 	<key>CFBundleIdentifier</key>
