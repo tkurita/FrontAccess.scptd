@@ -3,11 +3,13 @@
 <plist version="1.0">
 <dict>
 	<key>CFBundleHelpBookFolder</key>
-	<string>FrontAccess Help</string>
+	<string>FrontAccessHelp</string>
 	<key>CFBundleHelpBookName</key>
 	<string>net.script-factory.FrontAccess.help</string>
 	<key>CFBundleIdentifier</key>
 	<string>net.script-factory.FrontAccess</string>
+	<key>CFBundleName</key>
+	<string>FrontAccess</string>
 	<key>CFBundleShortVersionString</key>
 	<string>1.4</string>
 	<key>CFBundleVersion</key>
@@ -31,9 +33,9 @@
 		<key>positionOfDivider</key>
 		<real>562</real>
 		<key>savedFrame</key>
-		<string>58 171 841 700 0 0 1440 877 </string>
+		<string>589 175 841 700 0 0 1440 877 </string>
 		<key>selectedTab</key>
-		<string>description</string>
+		<string>result</string>
 	</dict>
 </dict>
 </plist>

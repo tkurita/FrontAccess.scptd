@@ -34,8 +34,8 @@
 <option value="#EnableGUIScripting">
 Enable GUI Scripting
 </option>
-<option value="#SampleCode">
-Sample Code
+<option value="#Examples">
+Examples
 </option>
 <option value="#Constructor_Methods">
 Constructor Methods
@@ -109,7 +109,7 @@ Saving and Closing the Document
 <ul>
 <li>Version : 1.4</li>
 <li>Author : Tetsuro KURITA <a href="mailto:scriptfactory@mac.com">scriptfactory@mac.com</a></li>
-<li>Requirements : Mac OS X 10.9 or later</li>
+<li>Requirements : OS X 10.9 or later</li>
 <li><a href="http://www.script-factory.net/XModules/FrontAccess/en/index.html">Home page</a> || <a href="http://www.script-factory.net/XModules/FrontAccess/changelog.html">ChangeLog</a> || <a href="https://github.com/tkurita/FrontAccess.scptd">Repository</a> </li>
 </ul>
 <p>FrontAccess is an AppleScript module to obtain information for application process and its frontmost document using GUI Scripting. FrontAccess can help building a script which does not depend on a certain application.The features of FrontAccess are..</p>
@@ -122,7 +122,7 @@ Saving and Closing the Document
 <p>FrontAccess requires GUI Scripting. </p>
 <p>To enable GUI Scripting, the application using FrontAcess must be registerd in the Accessibility section in the Security & Privacy preference pane in System Preferences.</p>
 <p><a href="help:openbook='GUIScriptingChecker Help'">GUIScriptingChercker</a> is useful to check availability of GUI Scripting.</p>
-<h2 id="SampleCode">Sample Code</h2>
+<h2 id="Examples">Examples</h2>
 <div class="sourceCode">
 <div class="scriptButton">
     <input type="button" value="Open this script" onclick="document.location = this.src" src="applescript://com.apple.scripteditor?action=new&amp;script=use%20FrontAccess%20:%20script%20%22FrontAccess%22%0Duse%20GUIScriptingChecker%20:%20script%20%22GUIScriptingChecker%22%0D%0Dif%20not%20GUIScriptingChecker%27s%20do()%20then%0D%09return%0Dend%20if%0D%0Dtell%20(make%20FrontAccess)%20--%20Making%20an%20instance%20of%20FrontAccess%0D%09(*%20Obtain%20application%20name%20and%20file%20alias%20*)%0D%09log%20application_name()%0D%09log%20application_alias()%0D%09%0D%09(*%20Obtain%20the%20file%20alias%20of%20the%20front%20document%20*)%0D%09log%20document_alias()%0Dend%20tell" />
